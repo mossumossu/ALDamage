@@ -1,8 +1,9 @@
 [{
-    "Name": "Twin 150mm (TbtsK C/36)",   
+    "Name": "Twin 150mm (TbtsK C/36)",
+    "WeaponType": "CL",
+    "AmmoType": "AP",
     "Shots": 4,    
     "Firepower": 25,
-    "AmmoType": "AP",
     "L0RoF": 3.35,
     "L0Damage": 9,
     "L10RoF": 3.0,
@@ -10,9 +11,10 @@
 },
 {
     "Name": "Twin 152mm (BL 6\" Mk XXII)",
+    "WeaponType": "CL",
+    "AmmoType": "AP",
     "Shots": 4,    
     "Firepower": 25,
-    "AmmoType": "AP",
     "L0RoF": 3.90,
     "L0Damage": 10,
     "L10RoF": 3.03,
@@ -20,11 +22,78 @@
 },
 {
     "Name": "Triple 155mm (3rd Year Type)",
+    "WeaponType": "CL",
+    "AmmoType": "HE",
     "Shots": 6,    
     "Firepower": 45,
-    "AmmoType": "HE",
     "L0RoF": 5.19,
     "L0Damage": 8,
     "L10RoF": 4.12,
     "L10Damage": 18  
+},
+{
+    "Name": "Single 127mm (Mk 30)",
+    "WeaponType": "DD",
+    "AmmoType": "HE",
+    "Shots": 3,    
+    "Firepower": 25,
+    "L0RoF": 1.46,
+    "L0Damage": 4,
+    "L10RoF": 1.06,
+    "L10Damage": 15  
+},
+{
+    "Name": "Twin 120mm (QF Mark XII)",
+    "WeaponType": "DD",
+    "AmmoType": "N",
+    "Shots": 4,    
+    "Firepower": 25,
+    "L0RoF": 1.70,
+    "L0Damage": 4,
+    "L10RoF": 1.44,
+    "L10Damage": 15  
+},
+{
+    "Name": "Twin 127mm (Mark 12)",
+    "WeaponType": "DD",
+    "AmmoType": "HE",
+    "Shots": 4,    
+    "Firepower": 20,
+    "L0RoF": 1.86,
+    "L0Damage": 4,
+    "L10RoF": 1.53,
+    "L10Damage": 15  
+},
+{
+    "Name": "Twin 100mm (Type 98)",
+    "WeaponType": "DD",
+    "AmmoType": "N",
+    "Shots": 4,    
+    "Firepower": 15,
+    "L0RoF": 1.20,
+    "L0Damage": 4,
+    "L10RoF": 0.96,
+    "L10Damage": 12  
+},
+{
+    "Name": "Twin 203mm (3rd Year Type)",
+    "WeaponType": "CA",
+    "AmmoType": "HE",
+    "Shots": 4,    
+    "Firepower": 25,
+    "L0RoF": 8.85,
+    "L0Damage": 26,
+    "L10RoF": 6.17,
+    "L10Damage": 46  
+},
+{
+    "Name": "Twin 203mm (SK C/34)",
+    "WeaponType": "CA",
+    "AmmoType": "HE",
+    "Shots": 6,    
+    "Firepower": 45,
+    "L0RoF": 9.98,
+    "L0Damage": 30,
+    "L10RoF": 7.65,
+    "L10Damage": 50  
 }]
