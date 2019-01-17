@@ -13,6 +13,8 @@ const url = 'https://mossumossu.github.io/ALDamage/res/weapons.json';
 
 var weaponData = [];
 
+var normalPlates = [1, 3, 5, 8, 11, 14, 18, 22, 26, 30];
+
 // populate weapon data array from .json
 function getWeaponData(){
     return $.getJSON(url, function(data){
@@ -31,17 +33,42 @@ getWeaponData();
 
 $(".dd-weapon").change(function () {
     var currentWeapon = $('#dd-weapon').val();
-    var currentLevel = $('#dd-weaponLevel').val();
-    var cRoF, cDPShot, cDPS;
+    var currentLevel = parseInt($('#dd-weaponLevel').val());
+    var nextLevel = currentLevel + 1;
+    var shots = weaponData[currentWeapon].Shots
+    var cRoF, cDPShot, cDPS, uROF, uDPShot, uDPS;
 
     cDPShot = weaponData[currentWeapon].L0Damage + ((weaponData[currentWeapon].L10Damage - weaponData[currentWeapon].L0Damage) / 10 ) * currentLevel;
     cRoF = weaponData[currentWeapon].L0RoF + ((weaponData[currentWeapon].L10RoF - weaponData[currentWeapon].L0RoF) / 10 ) * currentLevel;
-    cDPS = cDPShot * cRoF * weaponData[currentWeapon].Shots;
+    cDPS = cDPShot * cRoF * shots;
 
     document.getElementById('Shots').innerHTML = weaponData[currentWeapon].Shots;              
     document.getElementById('DPShot').innerHTML = cDPShot;
     document.getElementById('RoF').innerHTML = cRoF;
     document.getElementById('DPS').innerHTML = cDPS;
+
+    if(currentLevel < 10) {
+        uDPShot = weaponData[currentWeapon].L0Damage + ((weaponData[currentWeapon].L10Damage - weaponData[currentWeapon].L0Damage) / 10 ) * nextLevel;
+        uRoF = weaponData[currentWeapon].L0RoF + ((weaponData[currentWeapon].L10RoF - weaponData[currentWeapon].L0RoF) / 10 ) * nextLevel;
+        uDPS = uDPShot * uRoF * shots;
+        
+        document.getElementById('uShots').innerHTML = weaponData[currentWeapon].Shots;              
+        document.getElementById('uDPShot').innerHTML = uDPShot;
+        document.getElementById('uRoF').innerHTML = uRoF;
+        document.getElementById('uDPS').innerHTML = uDPS;
+
+        document.getElementById('Plates').innerHTML = normalPlates[currentLevel];              
+        document.getElementById('DPSPPlate').innerHTML = (uDPS - cDPS) / normalPlates[currentLevel];
+    }
+    else {
+        document.getElementById('uShots').innerHTML = "-";              
+        document.getElementById('uDPShot').innerHTML = "-";
+        document.getElementById('uRoF').innerHTML = "-";
+        document.getElementById('uDPS').innerHTML = "-";
+    
+        document.getElementById('Plates').innerHTML = "-";              
+        document.getElementById('DPSPPlate').innerHTML = "-";
+    } 
 });
 
 $("#dd-classFilter").change(function (){
@@ -59,12 +86,8 @@ $("#dd-classFilter").change(function (){
             if(item.WeaponType == $('#dd-classFilter').val())
                 ddWeapon.append(new Option(item.Name, index));
         });
-    };
-    
-    document.getElementById('Shots').innerHTML = "-";              
-    document.getElementById('DPShot').innerHTML = "-";
-    document.getElementById('RoF').innerHTML = "-";
-    document.getElementById('DPS').innerHTML = "-";
+    };    
+    document.getElementsByTagName("p").innerHTML = "-";
 })
 
 $(document).foundation()
