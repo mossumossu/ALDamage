@@ -7,4 +7,24 @@
     "L0Damage": 9,
     "L10RoF": 3.0,
     "L10Damage": 21
+},
+{
+    "Name": "Twin 152mm (BL 6\" Mk XXII)",
+    "Shots": 4,    
+    "Firepower": 25,
+    "AmmoType": "AP",
+    "L0RoF": 3.90,
+    "L0Damage": 10,
+    "L10RoF": 3.03,
+    "L10Damage": 22
+},
+{
+    "Name": "Triple 155mm (3rd Year Type)",
+    "Shots": 6,    
+    "Firepower": 45,
+    "AmmoType": "HE",
+    "L0RoF": 5.19,
+    "L0Damage": 8,
+    "L10RoF": 4.12,
+    "L10Damage": 18  
 }]
