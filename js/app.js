@@ -8,6 +8,7 @@ ddWeaponLevel.empty();
 for(i=0; i < 11; i++){
     ddWeaponLevel.append('<option value:' + i + '>' + i + '</option>')
 }
+ddWeaponLevel.prop('selectedIndex', 0);
 
 const url = 'https://mossumossu.github.io/ALDamage/res/weapons.json';
 
