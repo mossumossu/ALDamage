@@ -2,6 +2,7 @@
     "Name": "Twin 150mm (TbtsK C/36)",   
     "Shots": 4,    
     "Firepower": 25,
+    "AmmoType": "AP",
     "L0RoF": 3.35,
     "L0Damage": 9,
     "L10RoF": 3.0,

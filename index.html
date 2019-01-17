@@ -16,22 +16,40 @@
                 <h2>Azur Lane Damage Calculator</h2>               
             </div>
         </div>
-
+<div class="callout">
         <div class="grid-x grid-padding-x">
             <div class="large-3 cell">
                     <label>Weapon</label>
-                    <select id="dd-weapon">
+                    <select id="dd-weapon" name="dd-weapon" class="dd-weapon">
                     </select>            
             </div>
             <div class="large-1 cell">
                     <label>Level</label>
-                    <select>
+                    <select id="dd-weaponLevel" name="dd-weaponLevel" class="dd-weapon">
                         <option value="0">0</option>
                         <option value="10">10</option>
                     </select>            
             </div>
         </div>
-
+        <div class="grid-x grid-padding-x">
+            <div class="large-2 cell">
+                <label>Damage per Shot</label>
+                <p id="DPShot">-</p>
+            </div>
+            <div class="large-2 cell">
+                <label>Shots Fired</label>
+                <p id="Shots">-</p>
+            </div>
+            <div class="large-2 cell">
+                <label>Rate of Fire</label>
+                <p id="RoF">-</p>
+            </div>
+            <div class="large-2 cell">
+                <label>Damage per Second</label>
+                <p id="DPS">-</p>
+            </div>
+        </div>
+    </div>
         <div class="grid-x grid-padding-x">
             <div class="large-12 cell">
                 <button type="button" class="button">Add Ship</button>
