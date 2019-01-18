@@ -97,6 +97,7 @@ $(".input").change(function () {
         document.getElementById('uShots').innerHTML = "-";              
         document.getElementById('uDPShot').innerHTML = "-";
         document.getElementById('uRoF').innerHTML = "-";
+        document.getElementById('uFDPShot').innerHTML = "-";
         document.getElementById('uDPS').innerHTML = "-";
     
         document.getElementById('Plates').innerHTML = "-";              

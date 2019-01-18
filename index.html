@@ -39,12 +39,12 @@
             </div>
             <div class="large-1 cell">
                 <label>Firepower</label>
-                <input type="text" id="txt-FP" value="0" class="input">
+                <input type="text" id="txt-FP" value="0" class="input" pattern="[0-9]{1,4}" maxlength="4">
                 </select>            
             </div>
             <div class="large-1 cell">
                 <label>Efficiency</label>
-                <input type="text" id="txt-Eff" value="100" class="input">
+                <input type="text" id="txt-Eff" value="100" class="input" pattern="[0-9]{1,3}" maxlength="3">
                 </select>            
             </div>
         </div>
@@ -70,7 +70,8 @@
                 <p id="DPS">-</p>
             </div>
         </div>
-        <label>Next Level:</label>
+        <hr>
+        <label>Next Level:</label>   
         <div class="grid-x grid-padding-x">
             <div class="large-2 cell">
                 <label>Base Shot Damage</label>
@@ -99,7 +100,7 @@
                 <p id="Plates">-</p>
             </div>
             <div class="large-2 cell">
-                <label>DPS Per Plate</label>
+                <label>DPS per Plate</label>
                 <p id="DPSPPlate">-</p>
             </div>
         </div>
