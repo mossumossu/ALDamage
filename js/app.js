@@ -14,7 +14,9 @@ const url = 'https://mossumossu.github.io/ALDamage/res/weapons.json';
 
 var weaponData = [];
 
-var normalPlates = [1, 3, 5, 8, 11, 14, 18, 22, 26, 30];
+var purplePlates = [1, 3, 5, 8, 11, 14, 18, 22, 26, 30];
+var goldPlates = [2, 5, 8, 12, 16, 21, 27, 33, 39, 45];
+var legendPlates = [3, 9, 15, 24, 33, 42, 54, 66, 78, 90];
 
 // populate weapon data array from .json
 function getWeaponData(){
@@ -38,6 +40,7 @@ $(".dd-weapon").change(function () {
     var nextLevel = currentLevel + 1;
     var shots = weaponData[currentWeapon].Shots
     var cRoF, cDPShot, cDPS, uROF, uDPShot, uDPS;
+    var plates = [];
 
     cDPShot = weaponData[currentWeapon].L0Damage + ((weaponData[currentWeapon].L10Damage - weaponData[currentWeapon].L0Damage) / 10 ) * currentLevel;
     cRoF = weaponData[currentWeapon].L0RoF + ((weaponData[currentWeapon].L10RoF - weaponData[currentWeapon].L0RoF) / 10 ) * currentLevel;
@@ -47,6 +50,16 @@ $(".dd-weapon").change(function () {
     document.getElementById('DPShot').innerHTML = cDPShot;
     document.getElementById('RoF').innerHTML = cRoF;
     document.getElementById('DPS').innerHTML = cDPS;
+
+    if(weaponData[currentWeapon].Rarity == "Purple"){
+        plates = purplePlates;
+    }
+    else if (weaponData[currentWeapon].Rarity == "Gold"){
+        plates = goldPlates;
+    }
+    else if (weaponData[currentWeapon].Rarity == "Legendary"){
+        plates = legendPlates;
+    }
 
     if(currentLevel < 10) {
         uDPShot = weaponData[currentWeapon].L0Damage + ((weaponData[currentWeapon].L10Damage - weaponData[currentWeapon].L0Damage) / 10 ) * nextLevel;
@@ -58,8 +71,8 @@ $(".dd-weapon").change(function () {
         document.getElementById('uRoF').innerHTML = uRoF;
         document.getElementById('uDPS').innerHTML = uDPS;
 
-        document.getElementById('Plates').innerHTML = normalPlates[currentLevel];              
-        document.getElementById('DPSPPlate').innerHTML = (uDPS - cDPS) / normalPlates[currentLevel];
+        document.getElementById('Plates').innerHTML = plates[currentLevel];              
+        document.getElementById('DPSPPlate').innerHTML = (uDPS - cDPS) / plates[currentLevel];
     }
     else {
         document.getElementById('uShots').innerHTML = "-";              
