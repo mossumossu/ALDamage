@@ -34,19 +34,28 @@ getWeaponData().done(function(){
 
 getWeaponData();
 
-$(".dd-weapon").change(function () {
+$(".input").change(function () {
     var currentWeapon = $('#dd-weapon').val();
     var currentLevel = parseInt($('#dd-weaponLevel').val());
+    var currentFP = parseInt($('#txt-FP').val());
+    var currentEff = (parseInt($('#txt-Eff').val()))/100;
+
+    console.log(currentEff);
+    console.log(currentFP);
+
     var nextLevel = currentLevel + 1;
-    var shots = weaponData[currentWeapon].Shots
-    var cRoF, cDPShot, cDPS, uROF, uDPShot, uDPS;
+    var shots = weaponData[currentWeapon].Shots;
+    var modifier = weaponData[currentWeapon].Modifier;
+    var cRoF, cBaseDPShot, cDPShot, cDPS, uRoF, uBaseDPShot, uDPShot, uDPS;
     var plates = [];
 
-    cDPShot = weaponData[currentWeapon].L0Damage + ((weaponData[currentWeapon].L10Damage - weaponData[currentWeapon].L0Damage) / 10 ) * currentLevel;
+    cBaseDPShot = weaponData[currentWeapon].L0Damage + ((weaponData[currentWeapon].L10Damage - weaponData[currentWeapon].L0Damage) / 10 ) * currentLevel;
+    cDPShot = cBaseDPShot * currentEff * ((100 + currentFP) / 100) * modifier;
+
     cRoF = weaponData[currentWeapon].L0RoF + ((weaponData[currentWeapon].L10RoF - weaponData[currentWeapon].L0RoF) / 10 ) * currentLevel;
     cDPShot = Math.round(cDPShot);
 
-    cDPS = cDPShot * cRoF * shots;
+    cDPS = (cDPShot * shots) / cRoF;
 
     document.getElementById('Shots').innerHTML = weaponData[currentWeapon].Shots;              
     document.getElementById('DPShot').innerHTML = Math.round(cDPShot);
@@ -64,11 +73,13 @@ $(".dd-weapon").change(function () {
     }
 
     if(currentLevel < 10) {
-        uDPShot = weaponData[currentWeapon].L0Damage + ((weaponData[currentWeapon].L10Damage - weaponData[currentWeapon].L0Damage) / 10 ) * nextLevel;
+        uBaseDPShot = weaponData[currentWeapon].L0Damage + ((weaponData[currentWeapon].L10Damage - weaponData[currentWeapon].L0Damage) / 10 ) * nextLevel;
+        uDPShot = uBaseDPShot * currentEff * ((100 + currentFP) / 100) * modifier;
+
         uRoF = weaponData[currentWeapon].L0RoF + ((weaponData[currentWeapon].L10RoF - weaponData[currentWeapon].L0RoF) / 10 ) * nextLevel;
         uDPShot = Math.round(uDPShot);
 
-        uDPS = uDPShot * uRoF * shots;
+        uDPS = (uDPShot * shots) / uRoF;
         
         document.getElementById('uShots').innerHTML = weaponData[currentWeapon].Shots;              
         document.getElementById('uDPShot').innerHTML = uDPShot;
