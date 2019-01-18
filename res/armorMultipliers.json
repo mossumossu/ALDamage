@@ -1,0 +1,63 @@
+[{
+    "AmmoType": "Normal",
+    "weaponType": "DD",
+    "light": 1.0,
+    "medium": 0.5,
+    "heavy": 0.2
+},
+{
+    "AmmoType": "Normal",
+    "weaponType": "CL",
+    "light": 1.0,
+    "medium": 0.5,
+    "heavy": 0.2
+},
+{
+    "AmmoType": "Normal",
+    "weaponType": "CA",
+    "light": 1.0,
+    "medium": 0.5,
+    "heavy": 0.2
+},
+{
+    "AmmoType": "AP",
+    "weaponType": "DD",
+    "light": 0.9,
+    "medium": 0.7,
+    "heavy": 0.4
+},
+{
+    "AmmoType": "AP",
+    "weaponType": "CL",
+    "light": 1.0,
+    "medium": 0.5,
+    "heavy": 0.2
+},
+{
+    "AmmoType": "AP",
+    "weaponType": "CA",
+    "light": 0.75,
+    "medium": 1.1,
+    "heavy": 0.75
+},
+{
+    "AmmoType": "HE",
+    "weaponType": "DD",
+    "light": 1.2,
+    "medium": 0.6,
+    "heavy": 0.6
+},
+{
+    "AmmoType": "HE",
+    "weaponType": "CL",
+    "light": 1.45,
+    "medium": 1.05,
+    "heavy": 0.7
+},
+{
+    "AmmoType": "HE",
+    "weaponType": "CA",
+    "light": 1.35,
+    "medium": 0.95,
+    "heavy": 0.7
+}]
