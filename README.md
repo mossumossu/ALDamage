@@ -1,4 +1,6 @@
 # ALDamage
+https://mossumossu.github.io/ALDamage/
+
 A simple damage calculator for the mobile game Azur Lane. DPS results should not be taken too seriously due to weapon inaccuracy, ship skills, and some other damage modifiers not being accounted for.
 
 The DPS per Plate function may be useful for prioritizing upgrades.
