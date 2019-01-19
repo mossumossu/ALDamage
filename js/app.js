@@ -1,3 +1,12 @@
+var armorData = [];
+var weaponData = [];
+
+var purplePlates = [1, 3, 5, 8, 11, 14, 18, 22, 26, 30];
+var goldPlates = [2, 5, 8, 12, 16, 21, 27, 33, 39, 45];
+var legendPlates = [3, 9, 15, 24, 33, 42, 54, 66, 78, 90];
+
+var absoluteCD = {DD:0.26, CL:0.28, CA:0.30};
+
 // populate dropdowns
 let ddWeapon = $('#dd-weapon');
 ddWeapon.empty();
@@ -10,13 +19,6 @@ for(i=0; i < 11; i++){
     ddWeaponLevel.append('<option value:' + i + '>' + i + '</option>')
 }
 ddWeaponLevel.prop('selectedIndex', 0);
-
-var armorData = [];
-var weaponData = [];
-
-var purplePlates = [1, 3, 5, 8, 11, 14, 18, 22, 26, 30];
-var goldPlates = [2, 5, 8, 12, 16, 21, 27, 33, 39, 45];
-var legendPlates = [3, 9, 15, 24, 33, 42, 54, 66, 78, 90];
 
 // get armor damage multipliers
 $.getJSON('https://mossumossu.github.io/ALDamage/res/armorMultipliers.json', function(data){
@@ -90,7 +92,7 @@ $(".input").change(function () {
     cRoF = cRoF * Math.sqrt(200/(cReload + 100));
     
     // and damage per second
-    cDPS = (cFDPShot * shots) / cRoF;
+    cDPS = (cFDPShot * shots) / (cRoF + weaponData[currentWeapon].VolleyTime + absoluteCD.weaponData[currentWeapon].WeaponType);
 
     // update display
     document.getElementById('Shots').innerHTML = weaponData[currentWeapon].Shots;              
@@ -114,7 +116,7 @@ $(".input").change(function () {
         uRoF = uRoF * Math.sqrt(200/(cReload + 100));
 
         // and damage per second
-        uDPS = (uFDPShot * shots) / uRoF;
+        uDPS = (uFDPShot * shots) / (uRoF + weaponData[currentWeapon].VolleyTime + absoluteCD.weaponData[currentWeapon].WeaponType);
         
         // update display
         document.getElementById('uShots').innerHTML = weaponData[currentWeapon].Shots;              

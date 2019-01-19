@@ -9,7 +9,8 @@
     "L0Damage": 9,
     "L10RoF": 3.0,
     "L10Damage": 21,
-    "Modifier": 1.05
+    "Modifier": 1.05,
+    "VolleyTime": 0.1
 },
 {
     "Name": "Twin 152mm (BL 6\" Mk XXII)",
@@ -22,7 +23,8 @@
     "L0Damage": 10,
     "L10RoF": 3.03,
     "L10Damage": 22,
-    "Modifier": 1.10
+    "Modifier": 1.10,
+    "VolleyTime": 0.0
 },
 {
     "Name": "Triple 155mm (3rd Year Type)",
@@ -35,7 +37,8 @@
     "L0Damage": 8,
     "L10RoF": 4.12,
     "L10Damage": 18,
-    "Modifier": 1.05  
+    "Modifier": 1.05,
+    "VolleyTime": 0.15
 },
 {
     "Name": "Single 127mm (Mk 30)",
@@ -48,7 +51,8 @@
     "L0Damage": 4,
     "L10RoF": 1.06,
     "L10Damage": 15,
-    "Modifier": 1.25  
+    "Modifier": 1.25,
+    "VolleyTime": 0.3
 },
 {
     "Name": "Twin 120mm (QF Mark XII)",
@@ -61,7 +65,8 @@
     "L0Damage": 4,
     "L10RoF": 1.44,
     "L10Damage": 15,
-    "Modifier": 1.25  
+    "Modifier": 1.25,
+    "VolleyTime": 0.1  
 },
 {
     "Name": "Twin 127mm (Mark 12)",
@@ -74,7 +79,8 @@
     "L0Damage": 4,
     "L10RoF": 1.53,
     "L10Damage": 15,
-    "Modifier": 1.10  
+    "Modifier": 1.10,
+    "VolleyTime": 0.1 
 },
 {
     "Name": "Twin 100mm (Type 98)",
@@ -87,7 +93,8 @@
     "L0Damage": 4,
     "L10RoF": 0.96,
     "L10Damage": 12,
-    "Modifier": 1.10  
+    "Modifier": 1.10,
+    "VolleyTime": 0.1  
 },
 {
     "Name": "Twin 203mm (3rd Year Type)",
@@ -100,7 +107,8 @@
     "L0Damage": 26,
     "L10RoF": 6.17,
     "L10Damage": 46,
-    "Modifier": 1.10  
+    "Modifier": 1.10,
+    "VolleyTime": 0.5  
 },
 {
     "Name": "Twin 203mm (SK C/34)",
@@ -113,5 +121,6 @@
     "L0Damage": 30,
     "L10RoF": 7.65,
     "L10Damage": 50,
-    "Modifier": 1.10  
+    "Modifier": 1.10,
+    "VolleyTime": 1.0  
 }]
