@@ -114,14 +114,14 @@ $(".input").change(function () {
     };
 
     // calculate base damage per shot
-    cBaseDPShot = currentWeapon.L0Damage + ((currentWeapon.L10Damage - currentWeapon.L0Damage) / 10 ) * currentLevel;
+    cBaseDPShot = currentWeapon.L0Damage + ((currentWeapon.L10Damage - currentWeapon.L0Damage) / 10) * currentLevel;
     cBaseDPShot = Math.round(cBaseDPShot);
 
     // final damage per shot
     cFDPShot = cBaseDPShot * currentEff * ((100 + currentFP) / 100) * cWeaponCoef * cArmorMod;
 
     // rate of fire
-    cRoF = currentWeapon.L0RoF + ((currentWeapon.L10RoF - currentWeapon.L0RoF) / 10 ) * currentLevel;
+    cRoF = currentWeapon.L0RoF + ((currentWeapon.L10RoF - currentWeapon.L0RoF) / 10) * currentLevel;
     cRoF = cRoF * Math.sqrt(200/(cReload + 100));
     
     // and damage per second
@@ -137,14 +137,14 @@ $(".input").change(function () {
     if(currentLevel < 10) {
 
         // calculate base damage per shot
-        uBaseDPShot = currentWeapon.L0Damage + ((currentWeapon.L10Damage - currentWeapon.L0Damage) / 10 ) * nextLevel;
+        uBaseDPShot = currentWeapon.L0Damage + ((currentWeapon.L10Damage - currentWeapon.L0Damage) / 10) * nextLevel;
         uBaseDPShot = Math.round(uBaseDPShot);
         
         // final damage per shot
         uFDPShot = uBaseDPShot * currentEff * ((100 + currentFP) / 100) * cWeaponCoef * cArmorMod;
 
         // rate of fire
-        uRoF = currentWeapon.L0RoF + ((currentWeapon.L10RoF - currentWeapon.L0RoF) / 10 ) * nextLevel;
+        uRoF = currentWeapon.L0RoF + ((currentWeapon.L10RoF - currentWeapon.L0RoF) / 10) * nextLevel;
         uRoF = uRoF * Math.sqrt(200/(cReload + 100));
 
         // and damage per second
