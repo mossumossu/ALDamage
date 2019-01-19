@@ -41,61 +41,93 @@ getWeaponData().done(function(){
 
 getWeaponData();
 
+var inputWeapon;
+var currentWeapon;
+var cArmor;
+var cArmorMod;
+var cArmorModData;
+var cWeaponType;
+var cWeaponAmmo;
+var cWeaponRarity;
+var cWeaponShots;
+var cWeaponVolley;
+var cWeaponAbsoluteCD;
+var cWeaponCoef;
+
+// on weapon change
+$("#dd-weapon").change(function () {
+    // read input weapon
+    inputWeapon = $('#dd-weapon').val();
+
+    // load weapon info from weaponData
+    currentWeapon = weaponData[inputWeapon];
+
+    // populate variables   
+    cWeaponType = currentWeapon.WeaponType;
+    cWeaponAmmo = currentWeapon.AmmoType;
+    cWeaponRarity = currentWeapon.Rarity;
+    cWeaponShots = currentWeapon.Shots;
+    cWeaponVolley = currentWeapon.VolleyTime;
+    cWeaponAbsoluteCD = absoluteCD[cWeaponType];
+    cWeaponCoef = currentWeapon.Modifier;
+
+    updateArmor();
+
+    // update display
+    document.getElementById('weaponType').innerHTML = cWeaponType;              
+    document.getElementById('ammoType').innerHTML = cWeaponAmmo;
+    document.getElementById('rarity').innerHTML = cWeaponRarity;
+    document.getElementById('shots').innerHTML = cWeaponShots;
+    document.getElementById('volleyTime').innerHTML = cWeaponVolley;
+    document.getElementById('absoluteCD').innerHTML = cWeaponAbsoluteCD;
+    document.getElementById('wCoef').innerHTML = cWeaponCoef;
+});
+
+// on target armor change
+$("#dd-targetArmor").change(function () {
+    updateArmor();
+});
+
 // on input
 $(".input").change(function () {
 
     // read input values
-    var currentWeapon = $('#dd-weapon').val();
     var currentLevel = parseInt($('#dd-weaponLevel').val());
     var currentFP = parseInt($('#txt-FP').val());
     var currentEff = (parseInt($('#txt-Eff').val()))/100;
     var cReload = parseInt($('#txt-Reload').val());
-    var cArmor = $('#dd-targetArmor').val().toLowerCase();
 
     // initialize some other variables
-    var armorMod = 1;
     var nextLevel = currentLevel + 1;
-    var shots = weaponData[currentWeapon].Shots;
-    var modifier = weaponData[currentWeapon].Modifier;
     var cRoF, cBaseDPShot, cFDPShot, cDPS, uRoF, uBaseDPShot, uFDPShot, uDPS;
     var plates = [];
 
-    // find armor modifier
-    if(cArmor != "neutral"){
-        armorData.forEach(function(item){
-            if(item.AmmoType == weaponData[currentWeapon].AmmoType && item.weaponType == weaponData[currentWeapon].WeaponType){
-                armorMod = item[cArmor];
-            };
-        });
-    };  
-
     // check weapon rarity and populate plates array appropriately
-    if(weaponData[currentWeapon].Rarity == "Purple"){
+    if(cWeaponRarity == "Purple"){
         plates = purplePlates;
     }
-    else if (weaponData[currentWeapon].Rarity == "Gold"){
+    else if (cWeaponRarity == "Gold"){
         plates = goldPlates;
     }
-    else if (weaponData[currentWeapon].Rarity == "Legendary"){
+    else if (cWeaponRarity == "Legendary"){
         plates = legendPlates;
     };
 
     // calculate base damage per shot
-    cBaseDPShot = weaponData[currentWeapon].L0Damage + ((weaponData[currentWeapon].L10Damage - weaponData[currentWeapon].L0Damage) / 10 ) * currentLevel;
+    cBaseDPShot = currentWeapon.L0Damage + ((currentWeapon.L10Damage - currentWeapon.L0Damage) / 10 ) * currentLevel;
     cBaseDPShot = Math.round(cBaseDPShot);
 
     // final damage per shot
-    cFDPShot = cBaseDPShot * currentEff * ((100 + currentFP) / 100) * modifier * armorMod;
+    cFDPShot = cBaseDPShot * currentEff * ((100 + currentFP) / 100) * cWeaponCoef * cArmorMod;
 
     // rate of fire
-    cRoF = weaponData[currentWeapon].L0RoF + ((weaponData[currentWeapon].L10RoF - weaponData[currentWeapon].L0RoF) / 10 ) * currentLevel;
+    cRoF = currentWeapon.L0RoF + ((currentWeapon.L10RoF - currentWeapon.L0RoF) / 10 ) * currentLevel;
     cRoF = cRoF * Math.sqrt(200/(cReload + 100));
     
     // and damage per second
-    cDPS = (cFDPShot * shots) / (cRoF + weaponData[currentWeapon].VolleyTime + absoluteCD.weaponData[currentWeapon].WeaponType);
+    cDPS = (cFDPShot * cWeaponShots) / (cRoF + cWeaponVolley + cWeaponAbsoluteCD);
 
-    // update display
-    document.getElementById('Shots').innerHTML = weaponData[currentWeapon].Shots;              
+    // update display             
     document.getElementById('DPShot').innerHTML = cBaseDPShot;
     document.getElementById('RoF').innerHTML = Number(cRoF).toFixed(2);
     document.getElementById('cFDPShot').innerHTML = Number(cFDPShot).toFixed(2);
@@ -105,21 +137,20 @@ $(".input").change(function () {
     if(currentLevel < 10) {
 
         // calculate base damage per shot
-        uBaseDPShot = weaponData[currentWeapon].L0Damage + ((weaponData[currentWeapon].L10Damage - weaponData[currentWeapon].L0Damage) / 10 ) * nextLevel;
+        uBaseDPShot = currentWeapon.L0Damage + ((currentWeapon.L10Damage - currentWeapon.L0Damage) / 10 ) * nextLevel;
         uBaseDPShot = Math.round(uBaseDPShot);
         
         // final damage per shot
-        uFDPShot = uBaseDPShot * currentEff * ((100 + currentFP) / 100) * modifier * armorMod;
+        uFDPShot = uBaseDPShot * currentEff * ((100 + currentFP) / 100) * cWeaponCoef * cArmorMod;
 
         // rate of fire
-        uRoF = weaponData[currentWeapon].L0RoF + ((weaponData[currentWeapon].L10RoF - weaponData[currentWeapon].L0RoF) / 10 ) * nextLevel;
+        uRoF = currentWeapon.L0RoF + ((currentWeapon.L10RoF - currentWeapon.L0RoF) / 10 ) * nextLevel;
         uRoF = uRoF * Math.sqrt(200/(cReload + 100));
 
         // and damage per second
-        uDPS = (uFDPShot * shots) / (uRoF + weaponData[currentWeapon].VolleyTime + absoluteCD.weaponData[currentWeapon].WeaponType);
+        uDPS = (uFDPShot * cWeaponShots) / (uRoF + cWeaponVolley + cWeaponAbsoluteCD);
         
         // update display
-        document.getElementById('uShots').innerHTML = weaponData[currentWeapon].Shots;              
         document.getElementById('uDPShot').innerHTML = uBaseDPShot;
         document.getElementById('uRoF').innerHTML = Number(uRoF).toFixed(2);
         document.getElementById('uFDPShot').innerHTML = Number(uFDPShot).toFixed(2);
@@ -128,8 +159,7 @@ $(".input").change(function () {
         document.getElementById('DPSPPlate').innerHTML = Number((uDPS - cDPS) / plates[currentLevel]).toFixed(2);
     }
     // if the weapon is max level
-    else {
-        document.getElementById('uShots').innerHTML = "-";              
+    else {            
         document.getElementById('uDPShot').innerHTML = "-";
         document.getElementById('uRoF').innerHTML = "-";
         document.getElementById('uFDPShot').innerHTML = "-";
@@ -158,5 +188,29 @@ $("#dd-classFilter").change(function (){
     };    
     document.getElementsByTagName("p").innerHTML = "-";
 })
+
+function updateArmor(){
+
+    // get target armor type from dropdown
+    cArmor = $('#dd-targetArmor').val().toLowerCase();
+
+    // find armor modifier data for current weapon
+    armorData.forEach(function(item){
+        if(item.weaponType == cWeaponType && item.AmmoType == cWeaponAmmo){
+            cArmorModData = item;
+        };
+    });
+    
+    // get armor multiplier for current target armor type
+    if(cArmor == "neutral"){
+        cArmorMod = 1;
+    }
+    else{
+        cArmorMod = cArmorModData[cArmor];
+    };
+
+    // update display
+    document.getElementById('aMult').innerHTML = cArmorMod;
+}
 
 $(document).foundation()
