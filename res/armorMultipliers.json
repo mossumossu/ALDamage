@@ -9,15 +9,15 @@
     "AmmoType": "Normal",
     "weaponType": "CL",
     "light": 1.0,
-    "medium": 0.5,
-    "heavy": 0.2
+    "medium": 0.75,
+    "heavy": 0.4
 },
 {
     "AmmoType": "Normal",
     "weaponType": "CA",
     "light": 1.0,
-    "medium": 0.5,
-    "heavy": 0.2
+    "medium": 0.8,
+    "heavy": 0.6
 },
 {
     "AmmoType": "AP",
@@ -30,8 +30,8 @@
     "AmmoType": "AP",
     "weaponType": "CL",
     "light": 1.0,
-    "medium": 0.5,
-    "heavy": 0.2
+    "medium": 0.8,
+    "heavy": 0.5
 },
 {
     "AmmoType": "AP",

@@ -48,13 +48,24 @@ $(".input").change(function () {
     var currentFP = parseInt($('#txt-FP').val());
     var currentEff = (parseInt($('#txt-Eff').val()))/100;
     var cReload = parseInt($('#txt-Reload').val());
+    var cArmor = $('#dd-targetArmor').val().toLowerCase();
 
     // initialize some other variables
+    var armorMod = 1;
     var nextLevel = currentLevel + 1;
     var shots = weaponData[currentWeapon].Shots;
     var modifier = weaponData[currentWeapon].Modifier;
     var cRoF, cBaseDPShot, cFDPShot, cDPS, uRoF, uBaseDPShot, uFDPShot, uDPS;
     var plates = [];
+
+    // find armor modifier
+    if(cArmor != "neutral"){
+        armorData.forEach(function(item){
+            if(item.AmmoType == weaponData[currentWeapon].AmmoType && item.weaponType == weaponData[currentWeapon].WeaponType){
+                armorMod = item[cArmor];
+            };
+        });
+    };  
 
     // check weapon rarity and populate plates array appropriately
     if(weaponData[currentWeapon].Rarity == "Purple"){
@@ -65,14 +76,14 @@ $(".input").change(function () {
     }
     else if (weaponData[currentWeapon].Rarity == "Legendary"){
         plates = legendPlates;
-    }
+    };
 
     // calculate base damage per shot
     cBaseDPShot = weaponData[currentWeapon].L0Damage + ((weaponData[currentWeapon].L10Damage - weaponData[currentWeapon].L0Damage) / 10 ) * currentLevel;
     cBaseDPShot = Math.round(cBaseDPShot);
 
     // final damage per shot
-    cFDPShot = cBaseDPShot * currentEff * ((100 + currentFP) / 100) * modifier;
+    cFDPShot = cBaseDPShot * currentEff * ((100 + currentFP) / 100) * modifier * armorMod;
 
     // rate of fire
     cRoF = weaponData[currentWeapon].L0RoF + ((weaponData[currentWeapon].L10RoF - weaponData[currentWeapon].L0RoF) / 10 ) * currentLevel;
@@ -96,7 +107,7 @@ $(".input").change(function () {
         uBaseDPShot = Math.round(uBaseDPShot);
         
         // final damage per shot
-        uFDPShot = uBaseDPShot * currentEff * ((100 + currentFP) / 100) * modifier;
+        uFDPShot = uBaseDPShot * currentEff * ((100 + currentFP) / 100) * modifier * armorMod;
 
         // rate of fire
         uRoF = weaponData[currentWeapon].L0RoF + ((weaponData[currentWeapon].L10RoF - weaponData[currentWeapon].L0RoF) / 10 ) * nextLevel;
